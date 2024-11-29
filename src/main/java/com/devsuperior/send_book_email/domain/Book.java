@@ -59,4 +59,10 @@ public class Book {
 		this.category = category;
 	}
 
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", name=" + name + ", description=" + description + ", author=" + author
+				+ ", category=" + category + "]";
+	}
+
 }

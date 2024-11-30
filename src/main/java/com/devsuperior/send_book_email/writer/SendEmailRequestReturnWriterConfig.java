@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.devsuperior.send_book_email.domain.UserBookLoan;
 import com.sendgrid.Method;
 import com.sendgrid.Request;
 import com.sendgrid.Response;

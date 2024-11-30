@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.devsuperior.send_book_email.domain.UserBookLoan;
+import com.devsuperior.send_book_email.util.GenerateBookReturnDate;
 import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
@@ -23,7 +24,7 @@ public class ProcessLoanNotificationEmailProcessorConfig {
 				Content content = new Content("text/plain", generateEmailText(loan));
 				Mail mail = new Mail(from, "Notificação de devolução de livro",to, content);
 				Thread.sleep(1000);
-				return null;
+				return mail;
 			}
 		};
 	}
@@ -33,7 +34,7 @@ public class ProcessLoanNotificationEmailProcessorConfig {
 		writer.append(
 				String.format("Prezado(a), %s, matricula %d\n", loan.getUser().getName(), loan.getUser().getId()));
 		writer.append(String.format("Informamos que o prazo de devolução do livro %s é amanhã (%s) \n",
-				loan.getBook().getName(), GenerateBookReturnDate.getDate(loan.getLoan_date())));
+				loan.getBook().getName(), GenerateBookReturnDate.dateToStringFormatedDate(loan.getLoanDate())));
 		writer.append("Solicitamos que você renove o livro ou devolva, assim que possível.\n");
 		writer.append("A Biblioteca Municipal está funcionando de segunda a sexta, das 9h às 17h.\n\n");
 		writer.append("Atenciosamente,\n");

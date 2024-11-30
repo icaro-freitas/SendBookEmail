@@ -26,7 +26,7 @@ public class SendEmailUserStepConfig {
 	public Step sendEmailUserStep(
 			ItemProcessor<UserBookLoan, Mail> processLoanNotificationEmailProcessor,
 			ItemReader<UserBookLoan> readUsersWithLoansCloseToReturnReader,
-			ItemWriter<UserBookLoan> sendEmailRequestReturnWriter,
+			ItemWriter<Mail> sendEmailRequestReturnWriter,
 			JobRepository jobRepository) {
 		return new StepBuilder("sendEmailUserStep", jobRepository)
 				.<UserBookLoan, Mail>chunk(1, transactionManager)
